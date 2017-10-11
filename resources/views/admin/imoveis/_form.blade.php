@@ -63,7 +63,7 @@
 
 <div class="input-field col s12">
     <input type="text" name="valor" class="validate" value="{{(isset($registro->valor) ? $registro->valor : '')}}">
-    <label>Valor (Ex:234.90)</label>
+    <label>Valor (Ex:200034,90)</label>
 </div>
 
 <div class="input-field col s12">
@@ -85,8 +85,8 @@
 
 <div class="input-field col s12">
     <select name="publicar">
-        <option value="nao" {{(isset($registro->publicar) && $registro->publicar == 'nao' ? 'selected' : '')}}>Não</option>
-        <option value="nao" {{(isset($registro->publicar) && $registro->publicar == 'sim' ? 'selected' : '')}}>Sim</option>
+        <option value="Nao" {{(isset($registro->publicar) && $registro->publicar == 'Nao' ? 'selected' : '')}}>Não</option>
+        <option value="Sim" {{(isset($registro->publicar) && $registro->publicar == 'Sim' ? 'selected' : '')}}>Sim</option>
     </select>
     <label>Publicar?</label>
 </div>

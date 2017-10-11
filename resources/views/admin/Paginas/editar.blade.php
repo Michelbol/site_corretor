@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-        <h2>adicionar</h2>
         <div class="container">
             <h2 class="center">Editar Páginas</h2>
 

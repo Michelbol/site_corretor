@@ -40,6 +40,7 @@
                 <p><b>Código:</b> {{ $imovel->id }}</p>
                 <p><b>Status:</b> {{ $imovel->status }}</p>
                 <p><b>Tipo:</b> {{ $imovel->tipo->titulo }}</p>
+                <p><b>Dormitórios:</b> {{ $imovel->dormitorios }}</p>
                 <p><b>Endereço:</b> {{ $imovel->endereco }}</p>
                 <p><b>CEP:</b> {{ $imovel->cep }}</p>
                 <p><b>Cidade:</b> {{ $imovel->cidade->nome }}</p>
