@@ -17,7 +17,9 @@
                         <li><a href="{{route('admin.tipos')}}">Tipos</a></li>
                         <li><a href="{{route('admin.cidades')}}">Cidades</a></li>
                         <li><a href="{{route('admin.slides')}}">Slides</a></li>
+                        @can('usuario_listar')
                         <li><a href="{{route('admin.usuarios')}}">Usuários</a></li>
+                        @endcan
                         <li><a href="{{route('admin.papel')}}">Papel</a></li>
                         <li><a href="{{route('admin.paginas')}}">Páginas</a></li>
                     </ul>

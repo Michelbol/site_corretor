@@ -7,6 +7,7 @@ use App\http\Requests;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\User;
+use App\Papel;
 
 class UsuarioController extends Controller{
     public function login(Request $request){
@@ -27,8 +28,14 @@ class UsuarioController extends Controller{
     }
 
     public function index(){
-        $usuarios = User::all();
-        return view('admin.usuarios.index', compact('usuarios'));
+
+        if(auth()->user()->can('usuario_listar')){
+            $usuarios = User::all();
+            return view('admin.usuarios.index', compact('usuarios'));
+        }else{
+            return redirect()->route('admin.principal');
+        }
+
     }
     public function adicionar(){
         return view('admin.usuarios.adicionar');
@@ -72,5 +79,25 @@ class UsuarioController extends Controller{
         User::find($id)->delete();
         return redirect()->route('admin.usuarios');
         \Session::flash('mensagem', ['msg'=>'Registro deletado com sucesso!','class'=>'green white-text']);
+    }
+
+    public function papel($id){
+        $usuario = User::find($id);
+        $papel = Papel::all();
+        return view('admin.usuarios.papel', compact('usuario', 'papel'));
+    }
+
+    public function salvarPapel(Request $request, $id){
+        $usuario = User::find($id);
+        $dados = $request->all();
+        $papel = Papel::find($dados['papel_id']);
+        $usuario->adicionaPapel($papel);
+        return redirect()->back();
+    }
+    public function removerPapel($id, $papel_id){
+        $usuario = User::find($id);
+        $papel = Papel::find($papel_id);
+        $usuario->removePapel($papel);
+        return redirect()->back();
     }
 }

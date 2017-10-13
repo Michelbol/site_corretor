@@ -32,9 +32,15 @@
                         <td>{{ $registro->nome }}</td>
                         <td>{{ $registro->descricao }}</td>
                         <td>
-                            <a class="btn orange" href="{{ route('admin.papel.editar', $registro->id) }}">Editar</a>
-                            <a class="btn red" href="javascript: if(confirm('Deletar esse registro?')){
-                            window.location.href='{{route('admin.papel.deletar', $registro->id)}}'}">Deletar</a></td>
+                            @if($registro->nome != 'admin')
+                                <a class="btn orange" href="{{ route('admin.papel.editar', $registro->id) }}">Editar</a>
+                                <a class="btn blue" href="{{ route('admin.papel.permissao', $registro->id) }}">Permissao</a>
+                                <a class="btn red" href="javascript: if(confirm('Deletar esse registro?')){
+                                window.location.href='{{route('admin.papel.deletar', $registro->id)}}'}">Deletar</a></td>
+                            @else
+                                <a class="btn orange disabled">Editar</a>
+                                <a class="btn orange disabled">Deletar</a>
+                            @endif
                     </tr>
                 @endforeach
                 </tbody>
