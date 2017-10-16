@@ -9,18 +9,30 @@ use App\Permissao;
 
 class PapelController extends Controller{
     public function index(){
+        if(!auth()->user()->can('papel_listar')){
+            return view('admin.principal');
+        }
         $registros = Papel::all();
         return view('admin.papel.index', compact('registros'));
     }
 
     public function adicionar(){
+        if(!auth()->user()->can('papel_adicionar')){
+            return view('admin.principal');
+        }
         return view('admin.papel.adicionar');
     }
     public function salvar(Request $request){
+        if(!auth()->user()->can('papel_adicionar')){
+            return view('admin.principal');
+        }
         Papel::create($request->all());
         return redirect()->route('admin.papel');
     }
     public function editar($id){
+        if(!auth()->user()->can('papel_editar')){
+            return view('admin.principal');
+        }
         if(Papel::find($id)->nome == 'admin'){
             return redirect()->route('admin.papel');
         }
@@ -28,6 +40,9 @@ class PapelController extends Controller{
         return view('admin.papel.editar', compact('registro'));
     }
     public function atualizar(Request $request, $id){
+        if(!auth()->user()->can('papel_editar')){
+            return view('admin.principal');
+        }
         if(Papel::find($id)->nome == 'admin'){
             return redirect()->route('admin.papel');
         }
@@ -35,6 +50,9 @@ class PapelController extends Controller{
         return redirect()->route('admin.papel');
     }
     public function deletar($id){
+        if(!auth()->user()->can('papel_deletar')){
+            return view('admin.principal');
+        }
         if(Papel::find($id)->nome == 'admin'){
             return redirect()->route('admin.papel');
         }

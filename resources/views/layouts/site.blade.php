@@ -4,9 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
-    <meta name="description" content="">
+    <title>{{ isset($seo['titulo']) ? $seo['titulo'] : config('seo.titulo') }}</title>
+    <meta name="description" content="{{ isset($seo['descricao']) ? $seo['descricao'] : config('seo.descricao') }}">
+    <!--Twitter Card Data -->
+    <meta name="twitter:card" value="summary">
 
+    <!--Open Graph Data -->
+    <meta property="og:title" content="{{ isset($seo['titulo']) ? $seo['titulo'] : config('seo.titulo') }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ isset($seo['url']) ? $seo['url'] : config('app.url') }}"/>
+    <meta property="og:image" content="{{ isset($seo['imagem']) ? $seo['imagem'] : config('seo.imagem') }}"/>
+    <meta property="og:description" content="{{ isset($seo['descricao']) ? $seo['descricao'] : config('seo.descricao') }}"/>
 
 
     <!-- CSRF Token -->

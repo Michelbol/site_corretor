@@ -53,10 +53,14 @@ class User extends Authenticatable
         if(is_string($papel)){
             return $this->papeis->contains('nome', $papel);
         }
-
-        return $papel->intersect($this->papeis())->count();
+        return $papel->intersect($this->papeis)->count();
     }
     public function existeAdmin(){
         return $this->existePapel('admin');
+    }
+
+    public function teste(){
+        echo("Entrou");
+        exit;
     }
 }

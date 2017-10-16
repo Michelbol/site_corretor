@@ -38,10 +38,16 @@ class UsuarioController extends Controller{
 
     }
     public function adicionar(){
+        if(!auth()->user()->can('usuario_adicionar')){
+            return view('admin.principal');
+        }
         return view('admin.usuarios.adicionar');
     }
 
     public function salvar(Request $request){
+        if(!auth()->user()->can('usuario_adicionar')){
+            return view('admin.principal');
+        }
         $dados = $request->all();
 
         $usuario = new User();
@@ -57,11 +63,17 @@ class UsuarioController extends Controller{
     }
 
     public function editar($id){
+        if(!auth()->user()->can('usuario_editar')){
+            return view('admin.principal');
+        }
         $usuario = User::find($id);
         return view('admin.usuarios.editar', compact('usuario'));
     }
 
     public function  atualizar(Request $request, $id){
+        if(!auth()->user()->can('usuario_editar')){
+            return view('admin.principal');
+        }
         $usuario = User::find($id);
         $dados = $request->all();
         if(isset($dados['password']) && strlen($dados['password'])>5){
@@ -76,12 +88,18 @@ class UsuarioController extends Controller{
     }
 
     public function deletar($id){
+        if(!auth()->user()->can('usuario_deletar')){
+            return view('admin.principal');
+        }
         User::find($id)->delete();
         return redirect()->route('admin.usuarios');
         \Session::flash('mensagem', ['msg'=>'Registro deletado com sucesso!','class'=>'green white-text']);
     }
 
     public function papel($id){
+        if(!auth()->user()->can('usuario_deletar')){
+            return view('admin.principal');
+        }
         $usuario = User::find($id);
         $papel = Papel::all();
         return view('admin.usuarios.papel', compact('usuario', 'papel'));
