@@ -44,6 +44,10 @@ Route::group(['middleware'=>'auth'], function(){
     Route::put('/admin/usuarios/atualizar/{id}',['as'=>'admin.usuarios.atualizar', 'uses'=>'admin\UsuarioController@atualizar']);
     Route::get('/admin/usuarios/deletar/{id}', ['as'=>'admin.usuarios.deletar', 'uses'=>'admin\UsuarioController@deletar']);
 
+    Route::get('/admin/usuarios/papel/{i}',['as'=>'admin.usuarios.papel', 'uses'=>'admin\UsuarioController@papel']);
+    Route::post('/admin/usuarios/papel/salvar/{i}',['as'=>'admin.usuarios.papel.salvar', 'uses'=>'admin\UsuarioController@salvarPapel']);
+    Route::get('/admin/usuarios/papel/remover/{i}/{papel_id}',['as'=>'admin.usuarios.papel.remover', 'uses'=>'admin\UsuarioController@removerPapel']);
+
     Route::get('/admin/paginas', ['as'=>'admin.paginas', 'uses'=>'admin\PaginaController@index']);
     Route::get('/admin/paginas/editar/{id}', ['as'=>'admin.paginas.editar', 'uses'=>'admin\PaginaController@editar']);
     Route::put('/admin/paginas/atualizar/{id}', ['as'=>'admin.paginas.atualizar', 'uses'=>'admin\PaginaController@atualizar']);
@@ -92,6 +96,10 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/admin/papel/permissao/{id}',['as'=>'admin.papel.permissao', 'uses'=>'admin\PapelController@permissao']);
     Route::post('/admin/papel/permissao/{id}/salvar',['as'=>'admin.papel.permissao.salvar', 'uses'=>'admin\PapelController@SalvarPermissao']);
     Route::get('/admin/papel/permissao/{id}/remover/{id_permissao}',['as'=>'admin.papel.permissao.remover', 'uses'=>'admin\PapelController@RemoverPermissao']);
+
+    Route::get('/admin/papel/permissao/{id}',['as'=>'admin.papel.permissao', 'uses'=>'admin\PapelController@permissao']);
+    Route::post('/admin/papel/permissao/salvar/{id}',['as'=>'admin.papel.permissao.salvar', 'uses'=>'admin\PapelController@salvarPermissao']);
+    Route::get('/admin/papel/permissao/remover/{id}/{id_permissao}',['as'=>'admin.papel.permissao.remover', 'uses'=>'admin\PapelController@removerPermissao']);
 });
 
 
