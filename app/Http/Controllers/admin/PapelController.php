@@ -15,4 +15,7 @@ class PapelController extends Controller{
     public function adicionar(){
         return view('admin.papel.adicionar');
     }
+    public function salvar(){
+
+    }
 }
