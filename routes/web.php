@@ -13,11 +13,11 @@
 
 Route::get('/',['as'=>'site.home', 'uses'=>'Site\HomeController@index']);
 
-Route::get('/sobre', ['as'=>'site.sobre','uses'=>'site\PaginaController@sobre']);
+Route::get('/sobre', ['as'=>'site.sobre','uses'=>'Site\PaginaController@sobre']);
 
-Route::get('/contato', ['as'=>'site.contato','uses'=>'site\PaginaController@contato']);
+Route::get('/contato', ['as'=>'site.contato','uses'=>'Site\PaginaController@contato']);
 
-Route::post('/contato/enviar', ['as'=>'site.contato.enviar','uses'=>'site\PaginaController@enviarContato']);
+Route::post('/contato/enviar', ['as'=>'site.contato.enviar','uses'=>'Site\PaginaController@enviarContato']);
 
 Route::get('/imovel/{id}/{titulo?}', ['as'=>'site.imovel', 'uses' => 'Site\ImovelController@index']);
 
