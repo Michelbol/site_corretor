@@ -12,7 +12,7 @@ class PaginaController extends Controller
     public function index(){
         $paginas = Pagina::all();
 
-        return view('admin.paginas.index', compact('paginas'));
+        return view('admin.Paginas.index', compact('paginas'));
     }
     public function editar($id){
         $pagina = Pagina::find($id);
