@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Pagina;
+use Illuminate\Support\Facades\DB;
 
 class PaginasSeeds extends Seeder
 {
@@ -12,17 +13,17 @@ class PaginasSeeds extends Seeder
      */
     public function run()
     {
-        $existe = Pagina::where('tipo', '=','sobre')->count();
+        $existe = Pagina::where('tipo', 'sobre')->count();
 
         if($existe){
-            $paginaSobre = Pagina::where('tipo', '=','sobre')->first();
+            $paginaSobre = Pagina::where('tipo','sobre')->first();
             DB::table('paginas')->insert([
-                'titulo' => '$paginaSobre->titulo',
-                'descricao' => '$paginaSobre->descricao',
-                'imagem' => '$paginaSobre->imagem',
-                'texto' => '$paginaSobre->texto',
-                'mapa' => '$paginaSobre->mapa',
-                'tipo' => '$paginaSobre->tipo'
+                'titulo' => $paginaSobre->titulo,
+                'descricao' => $paginaSobre->descricao,
+                'imagem' => $paginaSobre->imagem,
+                'texto' => $paginaSobre->texto,
+                'mapa' => $paginaSobre->mapa,
+                'tipo' => $paginaSobre->tipo
             ]);
         }else {
             DB::table('paginas')->insert([
@@ -36,26 +37,28 @@ class PaginasSeeds extends Seeder
             echo "Pagina Sobre Criada com sucesso\n";
         }
 
-        $existe = Pagina::where('tipo', '=','contato')->count();
+        $existe = Pagina::where('tipo','contato')->count();
 
         if($existe){
             $paginaContato = Pagina::where('tipo', '=','contato')->first();
             DB::table('paginas')->insert([
-                'titulo' => '$paginaContato->titulo',
-                'descricao' => '$paginaContato->descricao',
-                'imagem' => '$paginaContato->imagem',
-                'email' => '$paginaContato->email',
-                'tipo' => '$paginaContato->tipo'
+                'titulo' => $paginaContato->titulo,
+                'descricao' => $paginaContato->descricao,
+                'imagem' => $paginaContato->imagem,
+                'texto' => $paginaContato->texto,
+                'email' => $paginaContato->email,
+                'tipo' => $paginaContato->tipo
             ]);
         }else{
             DB::table('paginas')->insert([
                 'titulo' => 'Entre em contato',
                 'descricao' => 'Preencha o formulário',
                 'imagem' =>'img/modelo_img_home.jpg',
+                'texto' => 'Texto sobre a empresa',
                 'email' => 'desenvolvimento3@interativasistemas.com',
                 'tipo' =>'contato',
             ]);
-            echo "Pagina Contato Criada com sucesso";
+            echo "Pagina Contato Criada com sucesso\n";
         }
     }
 }

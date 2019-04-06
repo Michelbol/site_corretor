@@ -46,6 +46,8 @@ class CreatePapelsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('papel_permissao');
+        Schema::dropIfExists('papel_user');
         Schema::dropIfExists('papels');
     }
 }
