@@ -40,10 +40,11 @@
                         <td><img width="100" src="{{asset($registro->imagem)}}"></td>
                         <td>{{ $registro->publicar }}</td>
                         <td>
-                            <a class="btn orange" href="{{ route('admin.imoveis.editar', $registro->id) }}">Editar</a>
-                            <a class="btn green" href="{{ route('admin.galerias', $registro->id) }}">Galeria</a>
-                            <a class="btn red" href="javascript: if(confirm('Deletar esse registro?')){
-                            window.location.href='{{route('admin.imoveis.deletar', $registro->id)}}'}">Deletar</a></td>
+                            <a class="btn waves-effect waves-light orange tooltipped" data-tooltip="Editar" href="{{ route('admin.imoveis.editar', $registro->id) }}"><i class="large material-icons">edit</i></a>
+                            <a class="btn waves-effect waves-light green tooltipped" data-tooltip="Galeria" href="{{ route('admin.galerias', $registro->id) }}"><i class="large material-icons">insert_photo</i></a>
+                            <a class="btn waves-effect waves-light red tooltipped" data-tooltip="Deletar" href="javascript: if(confirm('Deletar esse registro?')){
+                            window.location.href='{{route('admin.imoveis.deletar', $registro->id)}}'}"><i class="large material-icons">delete</i></a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

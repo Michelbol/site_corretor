@@ -18,3 +18,7 @@ $.validator.setDefaults({
     ignore: []
 });
 
+$(document).ready(function(){
+    $('.tooltipped').tooltip();
+});
+

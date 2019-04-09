@@ -30,9 +30,9 @@
                         <td>{{ $registro->id }}</td>
                         <td>{{ $registro->titulo }}</td>
                         <td>
-                            <a class="btn orange" href="{{ route('admin.tipos.editar', $registro->id) }}">Editar</a>
-                            <a class="btn red" href="javascript: if(confirm('Deletar esse registro?')){
-                            window.location.href='{{route('admin.tipos.deletar', $registro->id)}}'}">Deletar</a></td>
+                            <a class="btn waves-effect waves-light orange tooltipped" data-tooltip="Editar" href="{{ route('admin.tipos.editar', $registro->id) }}"><i class="large material-icons">edit</i></a>
+                            <a class="btn waves-effect waves-light red tooltipped" data-tooltip="Deletar" href="javascript: if(confirm('Deletar esse registro?')){
+                            window.location.href='{{route('admin.tipos.deletar', $registro->id)}}'}"><i class="large material-icons">delete</i></a></td>
                     </tr>
                 @endforeach
                 </tbody>

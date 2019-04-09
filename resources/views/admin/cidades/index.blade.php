@@ -34,9 +34,9 @@
                         <td>{{ $registro->estado }}</td>
                         <td>{{ $registro->sigla_estado }}</td>
                         <td>
-                            <a class="btn orange" href="{{ route('admin.cidades.editar', $registro->id) }}">Editar</a>
-                            <a class="btn red" href="javascript: if(confirm('Deletar esse registro?')){
-                            window.location.href='{{route('admin.cidades.deletar', $registro->id)}}'}">Deletar</a></td>
+                            <a class="btn waves-effect waves-light orange tooltipped" data-tooltip="Editar" href="{{ route('admin.cidades.editar', $registro->id) }}"><i class="large material-icons">edit</i></a>
+                            <a class="btn red waves-effect waves-light tooltipped" data-tooltip="Deletar" href="javascript: if(confirm('Deletar esse registro?')){
+                            window.location.href='{{route('admin.cidades.deletar', $registro->id)}}'}"><i class="large material-icons">delete</i></a></td>
                     </tr>
                 @endforeach
                 </tbody>
