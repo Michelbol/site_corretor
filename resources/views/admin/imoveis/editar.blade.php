@@ -17,7 +17,7 @@
                 </nav>
             </div>
             <div class="row">
-                <form action="{{ route('admin.imoveis.atualizar',$registro->id) }}" method="post" enctype="multipart/form-data">
+                <form id="form-imovel" action="{{ route('admin.imoveis.atualizar',$registro->id) }}" method="post" enctype="multipart/form-data">
 
                     {{csrf_field()}}
                     <input type="hidden" name="_method" value="put">
@@ -26,5 +26,10 @@
                 </form>
             </div>
         </div>
+    </div>
 
 @endsection
+
+@push('scripts')
+<script src="{{ asset('js/imovel/scripts.js') }}"></script>
+@endpush

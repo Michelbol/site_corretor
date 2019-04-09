@@ -13,3 +13,8 @@ function sliderNext(){
     $('.slider').slider('pause');
     $('.slider').slider('next');
 }
+
+$.validator.setDefaults({
+    ignore: []
+});
+

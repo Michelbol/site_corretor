@@ -17,12 +17,17 @@
                 </nav>
             </div>
             <div class="row">
-                <form action="{{ route('admin.imoveis.salvar') }}" method="post" enctype="multipart/form-data">
+                <form id="form-imovel" action="{{ route('admin.imoveis.salvar') }}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     @include('admin.imoveis._form')
-                    <button class="btn blue">Adicionar</button>
+                    <button  class="btn blue">Adicionar</button>
                 </form>
             </div>
+        </div>
     </div>
 
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/imovel/scripts.js') }}"></script>
+@endpush

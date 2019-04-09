@@ -52,23 +52,22 @@
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <h5 class="white-text">Souza Reis Corretor</h5>
+                <p class="grey-text text-lighten-4">Facilitando a conquista do seu sonho.</p>
             </div>
             <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
+                <h5 class="white-text">Redes Sociais</h5>
                 <ul>
-                    <li><a class="grey-text text-lighten-3" href="{{route('site.home')}}">Home</a></li>
-                    <li><a class="grey-text text-lighten-3" href="{{route('site.sobre')}}">Sobre</a></li>
-                    <li><a class="grey-text text-lighten-3" href="{{route('site.contato')}}">Contatos</a></li>
+                    <li><a class="grey-text text-lighten-3" target="_blank" href="https://www.facebook.com/antonioasouzareis">Facebook</a></li>
+                    <li><a class="grey-text text-lighten-3" target="_blank" href="https://www.instagram.com/reisantoniosouza">Instagram</a></li>
+                    <li><a class="grey-text text-lighten-3" target="_blank"href="https://twitter.com/Asouzareispr">Twitter</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="footer-copyright">
         <div class="container">
-            © 2017 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            <a class="grey-text text-lighten-4 right" href="#!"></a>
         </div>
     </div>
 </footer>
