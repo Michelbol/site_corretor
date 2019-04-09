@@ -19,7 +19,6 @@
             <table>
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Título</th>
                     <th>Status</th>
                     <th>Cidade</th>
@@ -32,13 +31,12 @@
                 <tbody>
                 @foreach($registros as $registro)
                     <tr>
-                        <td>{{ $registro->id }}</td>
                         <td>{{ $registro->titulo }}</td>
-                        <td>{{ $registro->status }}</td>
+                        <td>{{ ucfirst($registro->status) }}</td>
                         <td>{{ $registro->cidade->nome }}</td>
                         <td>R$ {{ number_format($registro->valor,2,",",".") }}</td>
                         <td><img width="100" src="{{asset($registro->imagem)}}"></td>
-                        <td>{{ $registro->publicar }}</td>
+                        <td>{{ $registro->publicar === 'nao' ? 'Não' : 'Sim' }}</td>
                         <td>
                             <a class="btn waves-effect waves-light orange tooltipped" data-tooltip="Editar" href="{{ route('admin.imoveis.editar', $registro->id) }}"><i class="large material-icons">edit</i></a>
                             <a class="btn waves-effect waves-light green tooltipped" data-tooltip="Galeria" href="{{ route('admin.galerias', $registro->id) }}"><i class="large material-icons">insert_photo</i></a>

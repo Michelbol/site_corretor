@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Utilitarios;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Imovel;
@@ -31,7 +32,7 @@ class ImovelController extends Controller{
         $registro->imagem = $dados['imagem'];
         $registro->endereco = $dados['endereco'];
         $registro->cep = $dados['cep'];
-        $registro->valor = $dados['valor'];
+        $registro->valor = Utilitarios::formatReal($dados['valor']);
         $registro->dormitorios = $dados['dormitorios'];
         $registro->detalhes = $dados['detalhes'];
         //$registro->vizualizacoes = 0;
@@ -43,6 +44,7 @@ class ImovelController extends Controller{
         }
         $registro->cidade_id = $dados['cidade_id'];
         $registro->tipo_id = $dados['tipo_id'];
+
         $file = $request->file('imagem');
         if($file){
             $rand = rand(11111,99999);
@@ -74,7 +76,7 @@ class ImovelController extends Controller{
         $registro->status = $dados['status'];
         $registro->endereco = $dados['endereco'];
         $registro->cep = $dados['cep'];
-        $registro->valor = $dados['valor'];
+        $registro->valor = Utilitarios::formatReal($dados['valor']);
         $registro->dormitorios = $dados['dormitorios'];
         $registro->detalhes = $dados['detalhes'];
         $registro->publicar = $dados['publicar'];

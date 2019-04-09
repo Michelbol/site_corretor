@@ -62,7 +62,7 @@
 </div>
 
 <div class="input-field col s12">
-    <input type="text" name="valor" class="validate" value="{{(isset($registro->valor) ? $registro->valor : '')}}">
+    <input type="text" name="valor" class="validate money" value="{{(isset($registro->valor) ? $registro->valor : '')}}">
     <label>Valor (Ex:200034,90)</label>
 </div>
 
