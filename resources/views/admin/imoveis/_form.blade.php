@@ -1,9 +1,9 @@
 <div class="input-field">
-    <input type="text" name="titulo" class="validade" value="{{ isset($registro->titulo) ? $registro->titulo : ''}}">
+    <input type="text" name="titulo" class="validade" value="{{ isset($registro->titulo) ? $registro->titulo : ''}}" maxlength="191">
     <label>Título</label>
 </div>
 <div class="input-field">
-    <input type="text" name="descricao" class="validade" value="{{ isset($registro->descricao) ? $registro->descricao : ''}}">
+    <input type="text" name="descricao" class="validade" value="{{ isset($registro->descricao) ? $registro->descricao : ''}}" maxlength="191">
     <label>Descrição</label>
 </div>
 
@@ -43,12 +43,12 @@
 </div>
 
 <div class="input-field col s12">
-    <input type="text" name="endereco" class="validate" value="{{(isset($registro->endereco) ? $registro->endereco : '')}}">
+    <input type="text" name="endereco" class="validate" value="{{(isset($registro->endereco) ? $registro->endereco : '')}}" maxlength="191">
     <label>Endereco</label>
 </div>
 
 <div class="input-field col s12">
-    <input type="text" name="cep" class="validate" value="{{(isset($registro->cep) ? $registro->cep : '')}}">
+    <input type="text" name="cep" class="validate" value="{{(isset($registro->cep) ? $registro->cep : '')}}" maxlength="191">
     <label>CEP (Ex:85.609-490)</label>
 </div>
 
@@ -62,17 +62,17 @@
 </div>
 
 <div class="input-field col s12">
-    <input type="text" name="valor" class="validate money" value="{{(isset($registro->valor) ? $registro->valor : '')}}">
+    <input type="text" name="valor" class="validate money" value="{{(isset($registro->valor) ? $registro->valor : '')}}" maxlength="15">
     <label>Valor (Ex:200034,90)</label>
 </div>
 
 <div class="input-field col s12">
-    <input type="text" name="dormitorios" class="validate" value="{{(isset($registro->dormitorios) ? $registro->dormitorios : '')}}">
+    <input type="text" name="dormitorios" class="validate" value="{{(isset($registro->dormitorios) ? $registro->dormitorios : '')}}" maxlength="191">
     <label>Dormitórios (Ex: 3)</label>
 </div>
 
 <div class="input-field col s12">
-    <input type="text" name="detalhes" class="validate" value="{{(isset($registro->detalhes) ? $registro->detalhes : '')}}">
+    <input type="text" name="detalhes" class="validate" value="{{(isset($registro->detalhes) ? $registro->detalhes : '')}}" maxlength="191">
     <label>Detalhes (Ex: Sacada: 1 - Banheiro: 2 - Sala De Jantar - Churrasqueira</label>
 </div>
 

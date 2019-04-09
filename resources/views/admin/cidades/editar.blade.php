@@ -17,7 +17,7 @@
                 </nav>
             </div>
             <div class="row">
-                <form action="{{ route('admin.cidades.atualizar',$registro->id) }}" method="post">
+                <form id="form-cidades" action="{{ route('admin.cidades.atualizar',$registro->id) }}" method="post">
 
                     {{csrf_field()}}
                     <input type="hidden" name="_method" value="put">
@@ -26,5 +26,8 @@
                 </form>
             </div>
         </div>
-
+    </div>
 @endsection
+@push('scripts')
+    <script src="{{ asset('js/cidades/scripts.js') }}"></script>
+@endpush

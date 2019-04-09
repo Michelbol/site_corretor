@@ -17,12 +17,15 @@
                 </nav>
             </div>
             <div class="row">
-                <form action="{{ route('admin.cidades.salvar') }}" method="post">
+                <form id="form-cidades" action="{{ route('admin.cidades.salvar') }}" method="post">
                 {{csrf_field()}}
                 @include('admin.cidades._form')
                 <button class="btn blue">Adicionar</button>
                 </form>
             </div>
+        </div>
     </div>
-
 @endsection
+@push('scripts')
+<script src="{{ asset('js/cidades/scripts.js') }}"></script>
+@endpush

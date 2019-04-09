@@ -17,7 +17,7 @@
                 </nav>
             </div>
             <div class="row">
-                <form action="{{ route('admin.tipos.salvar') }}" method="post">
+                <form id="save-tipo" action="{{ route('admin.tipos.salvar') }}" method="post">
                 {{csrf_field()}}
                 @include('admin.tipos._form')
                 <button class="btn blue">Adicionar</button>

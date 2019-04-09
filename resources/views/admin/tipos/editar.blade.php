@@ -17,7 +17,7 @@
                 </nav>
             </div>
             <div class="row">
-                <form action="{{ route('admin.tipos.atualizar',$registro->id) }}" method="post">
+                <form id="save-tipo" action="{{ route('admin.tipos.atualizar',$registro->id) }}" method="post">
 
                     {{csrf_field()}}
                     <input type="hidden" name="_method" value="put">
@@ -26,5 +26,9 @@
                 </form>
             </div>
         </div>
-
+    </div>
 @endsection
+
+@push('scripts')
+<script src="{{ asset('js/tipos/scripts.js') }}"></script>
+@endpush
