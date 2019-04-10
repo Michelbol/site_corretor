@@ -8,7 +8,7 @@
 <div class="row section">
     @foreach($imoveis as $imovel)
         <div class="col s12 m3">
-            <div class="card">
+            <div class="card large">
                 <div class="card-image">
                     <a href="{{ route('site.imovel', [$imovel->id, str_slug($imovel->titulo, '_')]) }}"><img src="{{ asset($imovel->imagem) }}" alt="{{$imovel->titulo}}">
                     </a>
