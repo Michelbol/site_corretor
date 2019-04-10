@@ -14,9 +14,9 @@
                 </div>
             </nav>
         </div>
-
+        <a class="btn blue" href="{{route('admin.imoveis.adicionar')}}">Adicionar</a>
         <div class="row">
-            <table>
+            <table id="table_imoveis">
                 <thead>
                 <tr>
                     <th>Título</th>
@@ -48,9 +48,6 @@
                 </tbody>
             </table>
 
-        </div>
-        <div class="row">
-            <a class="btn blue" href="{{route('admin.imoveis.adicionar')}}">Adicionar</a>
         </div>
     </div>
 @endsection

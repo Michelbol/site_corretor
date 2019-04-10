@@ -75,6 +75,8 @@
 <!-- Scripts -->
 <script src="{{asset('lib/jquery/dist/jquery.js')}}"></script>
 <script src="{{asset('lib/materialize/dist/js/materialize.js')}}"></script>
+<script src="{{asset('lib/jquery-validation-1.19.0/dist/jquery.validate.min.js')}}"></script>
+<script src="{{asset('lib/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js')}}"></script>
 <script src="{{asset('js/init.js')}}"></script>
 </body>
 </html>

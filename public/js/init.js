@@ -31,3 +31,8 @@ $(document).ready(function(){
     $('.tooltipped').tooltip();
 });
 
+function URLBASE(){
+    var url_full = window.location.href;
+    var url_split = url_full.split('/');
+    return url_split[0]+'//'+url_split[1]+url_split[2];
+}
