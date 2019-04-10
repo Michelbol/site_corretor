@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'titulo'=>'Site Dinamico',
-    'descricao'=>'Descricao do Site Dinâmico',
+    'titulo'=>'SouzaReisCorretor',
+    'descricao'=>'Descricao do Site DinÃ¢mico',
     'imagem'=>'imagem do site',
 
 ];
