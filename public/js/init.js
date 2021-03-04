@@ -31,6 +31,10 @@ $(document).ready(function(){
     $('.tooltipped').tooltip();
 });
 
+$('.close-card').on('click', function () {
+    $(this).parent().parent().parent().remove();
+});
+
 function URLBASE(){
     var url_full = window.location.href;
     var url_split = url_full.split('/');

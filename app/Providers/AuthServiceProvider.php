@@ -2,12 +2,10 @@
 
 namespace App\Providers;
 
-use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Permissao;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
 
 class AuthServiceProvider extends ServiceProvider
@@ -26,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Request $request){
+    public function boot(){
         $this->registerPolicies();
 
         foreach($this->getPermissoes() as $permissao){

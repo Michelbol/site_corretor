@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('lib/materialize/dist/css/materialize.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
 
-    <title>Laravel</title>
+    <title>Site Corretor</title>
 
 </head>
 <body id="app-layout">
@@ -22,11 +22,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="card {{Session::get('mensagem')['class']}}">
+                            <a href="#" class="white-text"><i class="tiny material-icons right close-card">close</i></a>
                             <div align="center" class="card-content">
                                 {{Session::get('mensagem')['msg']}}
                             </div>
                         </div>
-
                     </div>
                 </div>
             @endif
