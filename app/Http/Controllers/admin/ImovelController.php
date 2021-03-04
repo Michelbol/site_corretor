@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Galeria;
 use App\Utilitarios;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Imovel;
 use App\Tipo;
 use App\Cidade;
+use Session;
 
 class ImovelController extends Controller{
     public function index(){
@@ -56,7 +58,7 @@ class ImovelController extends Controller{
         }
         $registro->save();
 
-        \Session::flash('mensagem', ['msg'=>'Registro criado com sucesso!','class'=>'green white-text']);
+        Session::flash('mensagem', ['msg'=>'Registro criado com sucesso!','class'=>'green white-text']);
 
         return redirect()->route('admin.imoveis');
     }
@@ -98,15 +100,19 @@ class ImovelController extends Controller{
         }
         $registro->update();
 
-        \Session::flash('mensagem', ['msg'=>'Registro atualizado com sucesso!','class'=>'green white-text']);
+        Session::flash('mensagem', ['msg'=>'Registro atualizado com sucesso!','class'=>'green white-text']);
 
         return redirect()->route('admin.imoveis');
     }
 
     public function deletar($id){
+        $images = Galeria::where('imovel_id', $id)->get();
+        foreach ($images as $image){
+            $image->delete();
+        }
         Imovel::find($id)->delete();
 
-        \Session::flash('mensagem', ['msg'=>'Registro deletado com sucesso!','class'=>'green white-text']);
+        Session::flash('mensagem', ['msg'=>'Registro deletado com sucesso!','class'=>'green white-text']);
         return redirect()->route('admin.imoveis');
     }
 }
