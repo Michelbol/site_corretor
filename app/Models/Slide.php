@@ -35,5 +35,15 @@ use Illuminate\Support\Carbon;
  */
 class Slide extends Model
 {
-    //
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'titulo',
+        'descricao',
+        'imagem',
+        'link',
+        'ordem',
+        'publicado',
+    ];
 }

@@ -34,6 +34,17 @@ use Illuminate\Support\Carbon;
  */
 class Galeria extends Model
 {
+    /**
+     * @var string[]
+     */
+    protected $fillable =[
+        'imovel_id',
+        'titulo',
+        'descricao',
+        'imagem',
+        'ordem',
+    ];
+
     public function imovel()
     {
         return $this->belongsTo(Imovel::class, 'imovel_id');

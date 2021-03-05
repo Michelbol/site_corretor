@@ -75,7 +75,7 @@ class ImovelController extends Controller{
         }
         $registro->save();
 
-        Session::flash('mensagem', ['msg'=>'Registro criado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Registro criado com sucesso!');
 
         return redirect()->route('admin.imoveis');
     }
@@ -126,7 +126,7 @@ class ImovelController extends Controller{
         }
         $registro->update();
 
-        Session::flash('mensagem', ['msg'=>'Registro atualizado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Registro atualizado com sucesso!');
 
         return redirect()->route('admin.imoveis');
     }
@@ -143,7 +143,8 @@ class ImovelController extends Controller{
         }
         Imovel::find($id)->delete();
 
-        Session::flash('mensagem', ['msg'=>'Registro deletado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Registro deletado com sucesso!');
+
         return redirect()->route('admin.imoveis');
     }
 }

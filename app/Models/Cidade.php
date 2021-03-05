@@ -34,6 +34,15 @@ use Illuminate\Support\Carbon;
 class Cidade extends Model
 {
     /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'nome',
+        'estado',
+        'sigla_estado',
+    ];
+
+    /**
      * @return HasMany
      */
     public function imoveis()

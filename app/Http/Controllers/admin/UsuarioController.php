@@ -23,10 +23,10 @@ class UsuarioController extends Controller{
         $dados = $request->all();
 
         if(Auth::attempt(['email'=>$dados['email'], 'password'=>$dados['password']])){
-            Session::flash('mensagem', ['msg'=>'Login realizado com sucesso!','class'=>'green white-text']);
+            $this->successMessage('Login realizado com sucesso!');
             return redirect()->route('admin.principal');
         }
-        Session::flash('mensagem', ['msg'=>'Erro! Confira seus dados!','class'=>'red white-text']);
+        $this->errorMessage('Erro! Confira seus dados!');
         return redirect()->route('admin.login');
 
     }
@@ -80,7 +80,7 @@ class UsuarioController extends Controller{
         $usuario->password = bcrypt($dados['password']);
         $usuario->save();
 
-            Session::flash('mensagem', ['msg'=>'Registro criado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Registro criado com sucesso!');
 
         return redirect()->route('admin.usuarios');
     }
@@ -114,7 +114,7 @@ class UsuarioController extends Controller{
             unset($dados['password']);
         }
         $usuario->update($dados);
-        Session::flash('mensagem', ['msg'=>'Registro atualizado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Registro atualizado com sucesso!');
 
         return redirect()->route('admin.usuarios');
     }
@@ -129,7 +129,7 @@ class UsuarioController extends Controller{
             return view('admin.principal');
         }
         User::find($id)->delete();
-        Session::flash('mensagem', ['msg'=>'Registro deletado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Registro deletado com sucesso!');
         return redirect()->route('admin.usuarios');
     }
 

@@ -15,7 +15,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $qtdImoveis = Imovel::where('publicar', 'sim')->count();
+        $qtdImoveis = Imovel::wherePublicar('sim')->count();
         return view('admin.principal.index', compact('qtdImoveis'));
     }
 }

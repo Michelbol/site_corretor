@@ -47,7 +47,7 @@ class PaginaController extends Controller{
 
         });
 
-        Session::flash('mensagem', ['msg'=>'Contato enviado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Contato enviado com sucesso!');
 
         return redirect()->route('site.contato');
     }

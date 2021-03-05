@@ -60,7 +60,7 @@ class PaginaController extends Controller
             $pagina->imagem = $diretorio.'/'.$nomeArquivo;
         }
         $pagina->update();
-        Session::flash('mensagem', ['msg'=>'Registro atualizado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Registro atualizado com sucesso!');
         return redirect()->route('admin.paginas');
     }
 

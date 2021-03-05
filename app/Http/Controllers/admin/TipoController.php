@@ -41,7 +41,7 @@ class TipoController extends Controller{
         $registro->titulo = $dados['titulo'];
         $registro->save();
 
-        Session::flash('mensagem', ['msg'=>'Registro criado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Registro criado com sucesso!');
 
         return redirect()->route('admin.tipos');
     }
@@ -66,7 +66,7 @@ class TipoController extends Controller{
         $registro->titulo = $dados['titulo'];
         $registro->update();
 
-        Session::flash('mensagem', ['msg'=>'Registro atualizado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Registro atualizado com sucesso!');
 
         return redirect()->route('admin.tipos');
     }
@@ -85,11 +85,11 @@ class TipoController extends Controller{
             }
             $msg .= ") estão relacionados";
 
-            Session::flash('mensagem', ['msg'=> $msg,'class'=>'red white-text']);
+            $this->errorMessage($msg);
             return redirect()->route('admin.tipos');
         }
         Tipo::find($id)->delete();
-        Session::flash('mensagem', ['msg'=>'Registro deletado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Registro deletado com sucesso!');
         return redirect()->route('admin.tipos');
     }
 }

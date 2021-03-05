@@ -58,6 +58,23 @@ class Imovel extends Model
 {
     protected $table = "imoveis";
 
+    protected $fillable = [
+        'tipo_id',
+        'cidade_id',
+        'titulo',
+        'descricao',
+        'imagem',
+        'status',
+        'endereco',
+        'cep',
+        'valor',
+        'dormitorios',
+        'detalhes',
+        'mapa',
+        'visualizacoes',
+        'publicar',
+    ];
+
     public function tipo()
     {
         return $this->belongsTo(Tipo::class, 'tipo_id');

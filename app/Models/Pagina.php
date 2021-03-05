@@ -37,5 +37,13 @@ use Illuminate\Support\Carbon;
  */
 class Pagina extends Model
 {
-    //
+    protected $fillable = [
+        'titulo',
+        'descricao',
+        'texto',
+        'imagem',
+        'mapa',
+        'email',
+        'tipo',
+    ];
 }

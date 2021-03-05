@@ -11,7 +11,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Galeria;
 use App\Models\Imovel;
 use Illuminate\View\View;
-use Session;
 use Str;
 
 class GaleriaController extends Controller{
@@ -42,7 +41,7 @@ class GaleriaController extends Controller{
     public function salvar(Request $request, $id){
         $imovel = Imovel::find($id);
         if($imovel->galeria()->count()){
-            $galeria = $imovel->galeria()->orderBy('ordem', 'desc')->first();
+            $galeria = $imovel->galeria()->orderByDesc('ordem')->first();
             $ordemAtual = $galeria->ordem;
         }else{
             $ordemAtual = 0;
@@ -64,9 +63,7 @@ class GaleriaController extends Controller{
                 $registro->save();
             }
         }
-
-        Session::flash('mensagem', ['msg'=>'Registro criado com sucesso!','class'=>'green white-text']);
-
+        $this->successMessage('Registro criado com sucesso!');
         return redirect()->route('admin.galerias', $imovel->id);
     }
 
@@ -104,7 +101,7 @@ class GaleriaController extends Controller{
         }
         $registro->update();
 
-        Session::flash('mensagem', ['msg'=>'Registro atualizado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Registro atualizado com sucesso!');
 
         return redirect()->route('admin.galerias', $imovel->id);
     }
@@ -119,7 +116,7 @@ class GaleriaController extends Controller{
         $imovel = $galeria->imovel;
         $galeria->delete();
 
-        Session::flash('mensagem', ['msg'=>'Registro deletado com sucesso!','class'=>'green white-text']);
+        $this->successMessage('Registro deletado com sucesso!');
         return redirect()->route('admin.galerias', $imovel->id);
     }
 }
