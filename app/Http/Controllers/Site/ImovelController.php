@@ -17,6 +17,8 @@ class ImovelController extends Controller
      */
     public function index($id){
         $imovel = Imovel::find($id);
+        $imovel->visualizacoes += 1;
+        $imovel->save();
         $galeria = $imovel->galeria()->orderBy('ordem')->get();
         $direcaoImagem = ['center-align', 'left-align', 'rigth-align'];
         $seo = [
