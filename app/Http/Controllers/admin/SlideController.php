@@ -2,20 +2,36 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Slide;
+use Illuminate\View\View;
+use Session;
 
 class SlideController extends Controller{
+    /**
+     * @return Application|Factory|View
+     */
     public function index(){
         $registros = Slide::orderBy('ordem')->get();
         return view('admin.slides.index', compact('registros'));
     }
 
+    /**
+     * @return Application|Factory|View
+     */
     public function adicionar(){
         return view('admin.slides.adicionar');
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function salvar(Request $request){
         if(Slide::count()){
             $slides = Slide::orderBy('ordem', 'desc')->first();
@@ -40,16 +56,25 @@ class SlideController extends Controller{
             }
         }
 
-        \Session::flash('mensagem', ['msg'=>'Registro criado com sucesso!','class'=>'green white-text']);
+        Session::flash('mensagem', ['msg'=>'Registro criado com sucesso!','class'=>'green white-text']);
 
         return redirect()->route('admin.slides');
     }
 
+    /**
+     * @param $id
+     * @return Application|Factory|View
+     */
     public function editar($id){
         $registro = Slide::find($id);
         return view('admin.slides.editar', compact('registro'));
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     */
     public function  atualizar(Request $request, $id){
         $registro = Slide::find($id);
         $dados = $request->all();
@@ -71,16 +96,21 @@ class SlideController extends Controller{
         }
         $registro->update();
 
-        \Session::flash('mensagem', ['msg'=>'Registro atualizado com sucesso!','class'=>'green white-text']);
+        Session::flash('mensagem', ['msg'=>'Registro atualizado com sucesso!','class'=>'green white-text']);
 
         return redirect()->route('admin.slides');
     }
 
+    /**
+     * @param $id
+     * @return RedirectResponse
+     * @throws Exception
+     */
     public function deletar($id){
         $slide = Slide::find($id);
         $slide->delete();
 
-        \Session::flash('mensagem', ['msg'=>'Registro deletado com sucesso!','class'=>'green white-text']);
+        Session::flash('mensagem', ['msg'=>'Registro deletado com sucesso!','class'=>'green white-text']);
         return redirect()->route('admin.slides');
     }
 }

@@ -2,22 +2,39 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Pagina;
-use PhpParser\Node\Expr\Isset_;
+use Illuminate\View\View;
 
 class PaginaController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index(){
         $paginas = Pagina::all();
 
         return view('admin.Paginas.index', compact('paginas'));
     }
+
+    /**
+     * @param $id
+     * @return Application|Factory|View
+     */
     public function editar($id){
         $pagina = Pagina::find($id);
         return view('admin.Paginas.editar', compact('pagina'));
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     */
     public function atualizar(Request $request, $id){
         $dados = $request->all();
         $pagina = Pagina::find($id);

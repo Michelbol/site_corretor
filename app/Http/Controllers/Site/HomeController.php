@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers\Site;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Imovel;
 use App\Slide;
 use App\Tipo;
 use App\Cidade;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index(){
         $imoveis = Imovel::where('publicar', '=', 'Sim')->orderBy('id', 'desc')->paginate(20);
         $slides = Slide::where('publicado', '=', 'Sim')->orderBy('ordem')->get();
@@ -21,6 +27,10 @@ class HomeController extends Controller
         return view('site.home', compact('imoveis', 'slides', 'direcaoImagem', 'paginacao', 'tipos', 'cidades'));
     }
 
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
     public function busca(Request $request){
         $busca = $request->all();
         $paginacao = false;

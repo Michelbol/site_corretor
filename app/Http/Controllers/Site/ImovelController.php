@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers\Site;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Imovel;
+use Illuminate\View\View;
 
 class ImovelController extends Controller
 {
+    /**
+     * @param $id
+     * @return Application|Factory|View
+     */
     public function index($id){
         $imovel = Imovel::find($id);
         $galeria = $imovel->galeria()->orderBy('ordem')->get();

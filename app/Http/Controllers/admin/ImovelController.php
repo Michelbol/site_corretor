@@ -4,25 +4,41 @@ namespace App\Http\Controllers\Admin;
 
 use App\Galeria;
 use App\Utilitarios;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Imovel;
 use App\Tipo;
 use App\Cidade;
+use Illuminate\View\View;
 use Session;
 
 class ImovelController extends Controller{
+
+    /**
+     * @return Application|Factory|View
+     */
     public function index(){
         $registros = Imovel::all();
         return view('admin.imoveis.index', compact('registros'));
     }
 
+    /**
+     * @return Application|Factory|View
+     */
     public function adicionar(){
         $tipos = Tipo::all();
         $cidades = Cidade::all();
         return view('admin.imoveis.adicionar', compact('tipos','cidades'));
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function salvar(Request $request){
         $dados = $request->all();
 
@@ -63,6 +79,10 @@ class ImovelController extends Controller{
         return redirect()->route('admin.imoveis');
     }
 
+    /**
+     * @param $id
+     * @return Application|Factory|View
+     */
     public function editar($id){
         $registro = Imovel::find($id);
         $tipos = Tipo::all();
@@ -70,6 +90,11 @@ class ImovelController extends Controller{
         return view('admin.imoveis.editar', compact('registro','tipos','cidades'));
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     */
     public function  atualizar(Request $request, $id){
         $registro = Imovel::find($id);
         $dados = $request->all();
@@ -105,6 +130,11 @@ class ImovelController extends Controller{
         return redirect()->route('admin.imoveis');
     }
 
+    /**
+     * @param $id
+     * @return RedirectResponse
+     * @throws Exception
+     */
     public function deletar($id){
         $images = Galeria::where('imovel_id', $id)->get();
         foreach ($images as $image){
