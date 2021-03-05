@@ -10,7 +10,7 @@
         <div class="col s12 m3">
             <div class="card large">
                 <div class="card-image">
-                    <a href="{{ route('site.imovel', [$imovel->id, str_slug($imovel->titulo, '_')]) }}"><img src="{{ asset($imovel->imagem) }}" alt="{{$imovel->titulo}}">
+                    <a href="{{ route('site.imovel', [$imovel->id, \Str::slug($imovel->titulo, '_')]) }}"><img src="{{ asset($imovel->imagem) }}" alt="{{$imovel->titulo}}">
                     </a>
                 </div>
                 <div class="card-content">
@@ -20,7 +20,7 @@
                     <p>R$ {{ number_format($imovel->valor,2,",",".") }}</p>
                 </div>
                 <div  class="card-action">
-                    <a href="{{ route('site.imovel', [$imovel->id, str_slug($imovel->titulo, '_')]) }}">Ver mais..</a>
+                    <a href="{{ route('site.imovel', [$imovel->id, \Str::slug($imovel->titulo, '_')]) }}">Ver mais..</a>
                 </div>
             </div>
         </div>

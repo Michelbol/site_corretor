@@ -16,7 +16,7 @@ class ImovelController extends Controller
             'titulo'=>$imovel->titulo,
             'descricao'=>$imovel->descricao,
             'imagem'=>asset($imovel->imagem),
-            'url'=> route('site.imovel', [$imovel->id, str_slug($imovel->titulo, '_')])
+            'url'=> route('site.imovel', [$imovel->id, \Str::slug($imovel->titulo, '_')])
         ];
         return view('site.imovel', compact('imovel', 'galeria', 'direcaoImagem', 'seo'));
     }

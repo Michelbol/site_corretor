@@ -28,3 +28,14 @@ div.form-error {
     -o-transform: translatez(0);
     transform: translatez(0);
 }
+
+.card-dash {
+    display: flex;
+    justify-content: space-between;
+}
+.icon-dash {
+    margin-top: 0.2em!important;
+}
+.quantity-dash {
+    font-size: 30px !important;
+}
