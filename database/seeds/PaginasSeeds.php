@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Pagina;
+use App\Models\Pagina;
 use Illuminate\Support\Facades\DB;
 
 class PaginasSeeds extends Seeder

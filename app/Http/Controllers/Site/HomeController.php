@@ -6,10 +6,10 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Imovel;
-use App\Slide;
-use App\Tipo;
-use App\Cidade;
+use App\Models\Imovel;
+use App\Models\Slide;
+use App\Models\Tipo;
+use App\Models\Cidade;
 use Illuminate\View\View;
 
 class HomeController extends Controller

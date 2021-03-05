@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
+use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Permissao;
-use Illuminate\Support\Facades\Request;
+use App\Models\Permissao;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -37,7 +37,7 @@ class AuthServiceProvider extends ServiceProvider
     public function getPermissoes(){
         try{
             return Permissao::with('papeis')->get();
-        }catch (\Exception $e){
+        }catch (Exception $e){
             if($e instanceof QueryException){
                 return [];
             }

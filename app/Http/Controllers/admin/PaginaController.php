@@ -7,8 +7,9 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Pagina;
+use App\Models\Pagina;
 use Illuminate\View\View;
+use Session;
 
 class PaginaController extends Controller
 {
@@ -59,7 +60,7 @@ class PaginaController extends Controller
             $pagina->imagem = $diretorio.'/'.$nomeArquivo;
         }
         $pagina->update();
-        \Session::flash('mensagem', ['msg'=>'Registro atualizado com sucesso!','class'=>'green white-text']);
+        Session::flash('mensagem', ['msg'=>'Registro atualizado com sucesso!','class'=>'green white-text']);
         return redirect()->route('admin.paginas');
     }
 

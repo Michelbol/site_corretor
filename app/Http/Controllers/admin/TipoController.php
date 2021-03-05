@@ -8,8 +8,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Tipo;
-use App\Imovel;
+use App\Models\Tipo;
+use App\Models\Imovel;
 use Illuminate\View\View;
 use Session;
 

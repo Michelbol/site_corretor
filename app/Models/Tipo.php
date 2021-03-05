@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Tipo
+ * App\Models\Tipo
  *
  * @property int $id
  * @property string $titulo
@@ -30,6 +30,6 @@ class Tipo extends Model
 {
     public function imoveis()
     {
-        return $this->hasMany('App\Imovel', 'tipo_id');
+        return $this->hasMany(Imovel::class, 'tipo_id');
     }
 }

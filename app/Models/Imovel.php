@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Imovel
+ * App\Models\Imovel
  *
  * @property int $id
  * @property int $tipo_id
@@ -60,16 +60,16 @@ class Imovel extends Model
 
     public function tipo()
     {
-        return $this->belongsTo('App\Tipo', 'tipo_id');
+        return $this->belongsTo(Tipo::class, 'tipo_id');
     }
 
     public function cidade()
     {
-        return $this->belongsTo('App\Cidade', 'cidade_id');
+        return $this->belongsTo(Cidade::class, 'cidade_id');
     }
 
     public function galeria()
     {
-        return $this->hasMany('App\Galeria', 'imovel_id');
+        return $this->hasMany(Galeria::class, 'imovel_id');
     }
 }

@@ -8,8 +8,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Papel;
-use App\Permissao;
+use App\Models\Papel;
+use App\Models\Permissao;
 use Illuminate\View\View;
 
 class PapelController extends Controller{

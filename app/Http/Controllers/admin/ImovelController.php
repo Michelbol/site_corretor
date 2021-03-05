@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Galeria;
+use App\Models\Galeria;
 use App\Utilitarios;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
@@ -10,11 +10,12 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Imovel;
-use App\Tipo;
-use App\Cidade;
+use App\Models\Imovel;
+use App\Models\Tipo;
+use App\Models\Cidade;
 use Illuminate\View\View;
 use Session;
+use Str;
 
 class ImovelController extends Controller{
 
@@ -66,7 +67,7 @@ class ImovelController extends Controller{
         $file = $request->file('imagem');
         if($file){
             $rand = rand(11111,99999);
-            $diretorio = "img/imoveis/".\Str::slug($dados['titulo'],'_')."/";
+            $diretorio = "img/imoveis/". Str::slug($dados['titulo'],'_')."/";
             $ext = $file->guessClientExtension();
             $nomeArquivo = "_img_".$rand.".".$ext;
             $file->move($diretorio,$nomeArquivo);
@@ -117,7 +118,7 @@ class ImovelController extends Controller{
         $file = $request->file('imagem');
         if($file){
             $rand = rand(11111,99999);
-            $diretorio = "img/imoveis/".\Str::slug($dados['titulo'],'_')."/";
+            $diretorio = "img/imoveis/". Str::slug($dados['titulo'],'_')."/";
             $ext = $file->guessClientExtension();
             $nomeArquivo = "_img_".$rand.".".$ext;
             $file->move($diretorio,$nomeArquivo);

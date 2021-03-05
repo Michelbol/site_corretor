@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Galeria
+ * App\Models\Galeria
  *
  * @property int $id
  * @property int $imovel_id
@@ -36,6 +36,6 @@ class Galeria extends Model
 {
     public function imovel()
     {
-        return $this->belongsTo('App\Imovel', 'imovel_id');
+        return $this->belongsTo(Imovel::class, 'imovel_id');
     }
 }

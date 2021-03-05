@@ -9,8 +9,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
-use App\User;
-use App\Papel;
+use App\Models\User;
+use App\Models\Papel;
 use Illuminate\View\View;
 use Session;
 

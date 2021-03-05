@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Permissao;
+use App\Models\Permissao;
 
 class PermissaoSeeds extends Seeder
 {
