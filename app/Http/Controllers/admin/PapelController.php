@@ -22,10 +22,6 @@ class PapelController extends Controller{
         }
         return view('admin.papel.adicionar');
     }
-<<<<<<< HEAD
-    public function salvar(){
-
-=======
     public function salvar(Request $request){
         if(!auth()->user()->can('papel_adicionar')){
             return view('admin.principal');
@@ -79,6 +75,5 @@ class PapelController extends Controller{
         $permissao = Permissao::find($id_permissao);
         $papel->removerPermissao($permissao);
         return redirect()->back();
->>>>>>> d1323c4088d11a126eda0497710a1ec96b689eb0
     }
 }
