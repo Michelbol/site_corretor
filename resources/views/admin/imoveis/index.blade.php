@@ -35,7 +35,7 @@
                         <td>{{ ucfirst($registro->status) }}</td>
                         <td>{{ $registro->cidade->nome }}</td>
                         <td>R$ {{ number_format($registro->valor,2,",",".") }}</td>
-                        <td><img width="100" src="{{asset($registro->imagem)}}"></td>
+                        <td><img width="100" src="{{ $registro->getImageLink() }}"></td>
                         <td>{{ $registro->publicar === 'nao' ? 'Não' : 'Sim' }}</td>
                         <td>
                             <a class="btn waves-effect waves-light orange tooltipped" data-tooltip="Editar" href="{{ route('admin.imoveis.editar', $registro->id) }}"><i class="large material-icons">edit</i></a>
