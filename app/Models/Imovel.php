@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * App\Models\Imovel
@@ -88,5 +89,16 @@ class Imovel extends Model
     public function galeria()
     {
         return $this->hasMany(Galeria::class, 'imovel_id');
+    }
+
+    public function getImageLink(): string {
+        if($this->storage_type === 'local') {
+            return asset($this->public_link);
+        }
+
+        if($this->storage_type === 'gcs') {
+            return Storage::disk('gcs')->url($this->public_link);
+        }
+        return $this->public_link;
     }
 }

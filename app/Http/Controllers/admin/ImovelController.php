@@ -16,6 +16,7 @@ use App\Models\Cidade;
 use Illuminate\View\View;
 use Session;
 use Str;
+use Throwable;
 
 class ImovelController extends Controller{
 
@@ -66,12 +67,10 @@ class ImovelController extends Controller{
 
         $file = $request->file('imagem');
         if($file){
-            $rand = rand(11111,99999);
-            $diretorio = "img/imoveis/". Str::slug($dados['titulo'],'_')."/";
-            $ext = $file->guessClientExtension();
-            $nomeArquivo = "_img_".$rand.".".$ext;
-            $file->move($diretorio,$nomeArquivo);
-            $registro->imagem = $diretorio.'/'.$nomeArquivo;
+            $diretorio = "img/imoveis/". Str::slug($dados['titulo'],'_');
+            $nomeArquivo = $this->generateFileName($file);
+
+            $this->saveFileIntoStorage($diretorio, $nomeArquivo, $file, $registro);
         }
         $registro->save();
 
@@ -146,5 +145,35 @@ class ImovelController extends Controller{
         $this->successMessage('Registro deletado com sucesso!');
 
         return redirect()->route('admin.imoveis');
+    }
+
+    /**
+     * @param $file
+     * @return string
+     */
+    public function generateFileName($file): string
+    {
+        $rand = rand(11111, 99999);
+        $ext = $file->guessClientExtension();
+        $nomeArquivo = "_img_" . $rand . "." . $ext;
+        return $nomeArquivo;
+    }
+
+    public function saveFileIntoStorage(string $diretorio, string $nomeArquivo, $file, Imovel $registro): void
+    {
+        if(config('filesystems.cloud') === 'gcs'){
+            $disk = \Storage::disk('gcs');
+            $publicLink = $disk->put($diretorio . '/' . $nomeArquivo, $file);
+            $registro->imagem = $diretorio . '/' . $nomeArquivo;
+            $registro->storage_type = 'gcs';
+            $registro->public_link = $publicLink;
+            return;
+        }
+
+        $file->move($diretorio, $nomeArquivo);
+        $link = $diretorio . '/' . $nomeArquivo;
+        $registro->imagem = $link;
+        $registro->storage_type = 'local';
+        $registro->public_link = $link;
     }
 }
