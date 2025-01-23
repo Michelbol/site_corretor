@@ -1,70 +1,63 @@
 <?php
 
-namespace App\Http\Controllers\Admin2;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Galeria;
-use App\Models\Imovel;
+use App\Models\Slide;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Str;
 
-class GaleriaController extends Controller{
+class SlideController extends Controller{
     /**
-     * @param $id
      * @return Application|Factory|View
      */
-    public function index($id){
-        $imovel = Imovel::find($id);
-        $registros = $imovel->galeria()->orderBy('ordem')->get();
-        return view('admin.galerias.index', compact('registros', 'imovel'));
+    public function index(){
+        $registros = Slide::orderBy('ordem')->get();
+        return view('admin.slides.index', compact('registros'));
     }
 
     /**
-     * @param $id
      * @return Application|Factory|View
      */
-    public function adicionar($id){
-        $imovel = Imovel::find($id);
-        return view('admin.galerias.adicionar', compact('imovel'));
+    public function adicionar(){
+        return view('admin.slides.adicionar');
     }
 
     /**
      * @param Request $request
-     * @param $id
      * @return RedirectResponse
      */
-    public function salvar(Request $request, $id){
-        $imovel = Imovel::find($id);
-        if($imovel->galeria()->count()){
-            $galeria = $imovel->galeria()->orderByDesc('ordem')->first();
-            $ordemAtual = $galeria->ordem;
+    public function salvar(Request $request){
+        if(Slide::count()){
+            $slides = Slide::orderBy('ordem', 'desc')->first();
+            $ordemAtual = $slides->ordem;
         }else{
             $ordemAtual = 0;
         }
         if($request->hasFile('imagens')){
             $arquivos = $request->file('imagens');
             foreach ($arquivos as $imagem){
-                $registro = new Galeria();
+                $registro = new Slide();
 
                 $rand = rand(11111,99999);
-                $diretorio = "img/imoveis/". Str::slug($imovel->titulo,'_')."/";
+                $diretorio = "img/slides/";
                 $ext = $imagem->guessClientExtension();
                 $nomeArquivo = "_img_".$rand.".".$ext;
                 $imagem->move($diretorio,$nomeArquivo);
-                $registro->imovel_id =$imovel->id;
                 $registro->ordem = $ordemAtual + 1;
                 $ordemAtual++;
                 $registro->imagem = $diretorio.'/'.$nomeArquivo;
                 $registro->save();
             }
         }
+
         $this->successMessage('Registro criado com sucesso!');
-        return redirect()->route('admin.galerias', $imovel->id);
+
+        return redirect()->route('admin.slides');
     }
 
     /**
@@ -72,9 +65,8 @@ class GaleriaController extends Controller{
      * @return Application|Factory|View
      */
     public function editar($id){
-        $registro = Galeria::find($id);
-        $imovel = $registro->imovel;
-        return view('admin.galerias.editar', compact('registro', 'imovel'));
+        $registro = Slide::find($id);
+        return view('admin.slides.editar', compact('registro'));
     }
 
     /**
@@ -83,17 +75,19 @@ class GaleriaController extends Controller{
      * @return RedirectResponse
      */
     public function  atualizar(Request $request, $id){
-        $registro = Galeria::find($id);
+        $registro = Slide::find($id);
         $dados = $request->all();
         $registro->titulo = $dados['titulo'];
         $registro->descricao = $dados['descricao'];
+        $registro->link = $dados['link'];
         $registro->ordem = $dados['ordem'];
-        $imovel = $registro->imovel;
+        $registro->publicado = $dados['publicado'];
+
 
         $file = $request->file('imagem');
         if($file){
             $rand = rand(11111,99999);
-            $diretorio = "img/imoveis/". Str::slug($imovel->titulo,'_')."/";
+            $diretorio = "img/slides/";
             $ext = $file->guessClientExtension();
             $nomeArquivo = "_img_".$rand.".".$ext;
             $file->move($diretorio,$nomeArquivo);
@@ -103,7 +97,7 @@ class GaleriaController extends Controller{
 
         $this->successMessage('Registro atualizado com sucesso!');
 
-        return redirect()->route('admin.galerias', $imovel->id);
+        return redirect()->route('admin.slides');
     }
 
     /**
@@ -112,11 +106,10 @@ class GaleriaController extends Controller{
      * @throws Exception
      */
     public function deletar($id){
-        $galeria = Galeria::find($id);
-        $imovel = $galeria->imovel;
-        $galeria->delete();
+        $slide = Slide::find($id);
+        $slide->delete();
 
         $this->successMessage('Registro deletado com sucesso!');
-        return redirect()->route('admin.galerias', $imovel->id);
+        return redirect()->route('admin.slides');
     }
 }
