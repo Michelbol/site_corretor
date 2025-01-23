@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin2;
 
+use App\Http\Controllers\Controller;
+use App\Models\Galeria;
+use App\Models\Imovel;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Galeria;
-use App\Models\Imovel;
 use Illuminate\View\View;
 use Str;
 
