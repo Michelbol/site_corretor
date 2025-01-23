@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin2;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cidade;
 use App\Models\Imovel;
+use App\Models\Tipo;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -12,20 +12,20 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class CidadeController extends Controller{
+class TipoController extends Controller{
     /**
      * @return Application|Factory|View
      */
     public function index(){
-        $registros = Cidade::all();
-        return view('admin.cidades.index', compact('registros'));
+        $registros = Tipo::all();
+        return view('admin.tipos.index', compact('registros'));
     }
 
     /**
      * @return Application|Factory|View
      */
     public function adicionar(){
-        return view('admin.cidades.adicionar');
+        return view('admin.tipos.adicionar');
     }
 
     /**
@@ -35,16 +35,14 @@ class CidadeController extends Controller{
     public function salvar(Request $request){
         $dados = $request->all();
 
-        $registro = new Cidade();
+        $registro = new Tipo();
 
-        $registro->nome = $dados['nome'];
-        $registro->estado = $dados['estado'];
-        $registro->sigla_estado = $dados['sigla_estado'];
+        $registro->titulo = $dados['titulo'];
         $registro->save();
 
         $this->successMessage('Registro criado com sucesso!');
 
-        return redirect()->route('admin.cidades');
+        return redirect()->route('admin.tipos');
     }
 
     /**
@@ -52,8 +50,8 @@ class CidadeController extends Controller{
      * @return Application|Factory|View
      */
     public function editar($id){
-        $registro = Cidade::find($id);
-        return view('admin.cidades.editar', compact('registro'));
+        $registro = Tipo::find($id);
+        return view('admin.tipos.editar', compact('registro'));
     }
 
     /**
@@ -62,16 +60,14 @@ class CidadeController extends Controller{
      * @return RedirectResponse
      */
     public function  atualizar(Request $request, $id){
-        $registro = Cidade::find($id);
+        $registro = Tipo::find($id);
         $dados = $request->all();
-        $registro->nome = $dados['nome'];
-        $registro->estado = $dados['estado'];
-        $registro->sigla_estado = $dados['sigla_estado'];
+        $registro->titulo = $dados['titulo'];
         $registro->update();
 
         $this->successMessage('Registro atualizado com sucesso!');
 
-        return redirect()->route('admin.cidades');
+        return redirect()->route('admin.tipos');
     }
 
     /**
@@ -80,20 +76,19 @@ class CidadeController extends Controller{
      * @throws Exception
      */
     public function deletar($id){
-        if(Imovel::where('cidade_id','=',$id)->count()){
-            $msg = "Não é possível deletar essa cidade! Esses imóveis (";
-            $imoveis = Imovel::where('cidade_id','=',$id)->get();
+        if(Imovel::where('tipo_id','=',$id)->count()){
+            $msg = "Não é possível deletar esse tipo de imóvel! Esses imóveis (";
+            $imoveis = Imovel::where('tipo_id','=',$id)->get();
             foreach ($imoveis as $imovel){
                 $msg .= "id:".$imovel->id." ";
             }
             $msg .= ") estão relacionados";
 
             $this->errorMessage($msg);
-            return redirect()->route('admin.cidades');
+            return redirect()->route('admin.tipos');
         }
-        Cidade::find($id)->delete();
-
+        Tipo::find($id)->delete();
         $this->successMessage('Registro deletado com sucesso!');
-        return redirect()->route('admin.cidades');
+        return redirect()->route('admin.tipos');
     }
 }
