@@ -26,8 +26,8 @@ services:
             - ./src:/var/www/html
             - /etc/letsencrypt:/etc/letsencrypt:ro
         ports:
-            - "8000:80"
-            - "8443:443"
+            - "80:80"
+            - "443:443"
         networks:
             - laravel
         depends_on:
