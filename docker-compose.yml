@@ -27,9 +27,12 @@ services:
             - /etc/letsencrypt:/etc/letsencrypt:ro
         networks:
             - laravel
+            - global_proxy_network
         depends_on:
             - app
 
 networks:
     laravel:
         driver: bridge
+    global_proxy_network:
+        external: true
